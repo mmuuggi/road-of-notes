@@ -1,4 +1,4 @@
-###############################################################
+ ###############################################################
 #                      Trabalho 02 Equipe                     #
 #             1- Kelve Monteiro Cartaxo - 542485              #
 #             2-Coloquem Seus Nomes                           #
@@ -62,6 +62,12 @@ enemymodel.shape('turtle')
 enemymodel.shapesize(2.5)
 enemymodel.color('Black')
 
+
+window = turtle.Screen()
+window.title('Road Of Notes')
+window.setup(1360,768)
+window.register_shape('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
+window.bgpic('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
 #################################################################################
 
 #################################################################################
@@ -166,8 +172,8 @@ def commands(player,enemy):
         battleinf.write('COMANDO INVALIDO!!!', font=("Minecraft", 16, "normal"))
         time.sleep(1.5)
 def battle(player,enemy):
-    playermodel.goto(-230,-150)
-    enemymodel.goto(230,150)
+    playermodel.goto(-400,-280)
+    enemymodel.goto(300,-40)
     while True:
         battleinf.clear()
         battleinf.goto(15,-300)
@@ -188,8 +194,6 @@ def battle(player,enemy):
 #################################################################################
 #CORPO PRINCIPAL DO GAME
 #################################################################################
-window = turtle.Screen()
-window.screensize(800,600)
-fps = 60
+
 battle(player,enemy)
 window.mainloop()
