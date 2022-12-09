@@ -1,11 +1,11 @@
- ###############################################################
-#                      Trabalho 02 Equipe                     #
-#             1- Kelve Monteiro Cartaxo - 542485              #
-#             2-Coloquem Seus Nomes                           #
-#             3-Coloquem Seus Nomes                           #
-#             4-Coloquem Seus Nomes                           #
-#             5-Coloquem Seus Nomes                           #
-###############################################################
+#################################################################
+#                      Trabalho 02 Equipe                       #
+#             1- Kelve Monteiro Cartaxo - 542485                #
+#             2-Coloquem Seus Nomes                             #
+#             3- Daniel Anderson Gonçalves de Oliveira - 540835 #
+#             4-Coloquem Seus Nomes                             #
+#             5-Coloquem Seus Nomes                             #
+#################################################################
 
 ###########################
 #lugar dos imports
@@ -33,6 +33,11 @@ player  = {'name': 'Yonlero',
                 'dmg1': [10,15],
                 'dmg2': [5,20],
                 'dmg3': [0,50],
+                #ATKS Buffados, estão sujeitos a balanceamento#
+                'dmg7': [25,30],
+                'dmg8': [35,40],
+                'dmg9': [50,60],
+                ################################################
                 'armor': 3
             }
 }
@@ -79,8 +84,13 @@ battleinf.color = 'Black'
 battleinf.penup()
 battleinf.speed(0)
 battleinf.goto(500,500)
-#################################################################################
+#################################################################################]
 
+#################################################################################
+#VARIAVEL RESPONSAVEL PELA QTD DOS AFINADORES
+#################################################################################
+afinador = 3
+#################################################################################
 
 #################################################################################
 #FUNCOES DA BATALHA//// TOMAR E RECEBER DANO, E OS COMANDOS
@@ -98,8 +108,27 @@ def press_on_atk(key):
         selecatk = 2
     elif key == Key.f3:
         selecatk = 3
+    #Aproveitando a função do Kel para ataques buffados
+    elif key == Key.f7:
+        selecatk = 7
+    elif key == Key.f8:
+        selecatk = 8
+    elif key == Key.f9:
+        selecatk = 9
+    #############################
     else:
         selecatk = randint(1,3)
+    return False
+
+#Opções da mochila
+def press_on_op(key):
+    global selecop
+    if key == Key.f4:
+        selecop = 4
+    elif key == Key.f5:
+        selecop = 5
+    else:
+        selecop = 5
     return False
 
 def takedmg(attacker,defender,attack):
@@ -156,11 +185,55 @@ def commands(player,enemy):
             selecatk = 1
             takedmg(enemy,player,selecatk)
     elif command == Key.caps_lock:
-        pass
         #EH AQ ONDE O AMIGAO DANIEL IRA COLOCAR A BOLSA
-        selecatk = 1
-        takedmg(enemy,player,selecatk)
-        time.sleep(1.5)
+        global afinador
+
+        if afinador> 0:
+            battleinf.clear()
+            battleinf.write(f'Você tem {afinador} afinadores em sua Bolsa!!!\n[F4]Utilizar\n[F5]Não utilizar\n', font=("Minecraft", 16, "normal"))
+            with Listener(on_press=press_on_op) as listener:
+                listener.join()
+
+            if selecop == 4:
+                
+                afinador= afinador - 1
+                battleinf.clear()
+                battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F7]Bohemian Rhapsody\n[F8]Dream On\n[F9]Juliet\n', font=("Minecraft", 16, "normal"))
+                with Listener(on_press=press_on_atk) as listener:
+                    listener.join()
+
+                if selecatk == 7:
+                    battleinf.clear()
+                    battleinf.write('Mama, Just Killed A Man', font=("Minecraft", 16, "normal"))
+                    time.sleep(1)
+                    takedmg(player,enemy,selecatk)
+                elif selecatk == 8:
+                    battleinf.clear()
+                    battleinf.write('The Past Is Gone', font=("Minecraft", 16, "normal"))
+                    time.sleep(1)
+                    takedmg(player,enemy,selecatk)
+                elif selecatk == 9:
+                    battleinf.clear()
+                    battleinf.write('I am Choosen Undead', font=("Minecraft", 16, "normal"))
+                    time.sleep(1)
+                    takedmg(player,enemy,selecatk)
+                else:
+                    battleinf.clear()
+                    battleinf.write('COMANDO INVALIDO!!!', font=("Arial", 16, "normal"))
+                    selecatk = 1
+                    battleinf.clear()
+                    time.sleep(1)
+                
+            elif selecop == 5:
+                selecatk = 1
+                time.sleep(1.5)
+                
+        else:
+            battleinf.clear()
+            battleinf.write(f'SUA BOLSA ESTÁ VAZIA!!!\n', font=("Minecraft", 16, "normal"))
+            time.sleep(1.5)
+            selecatk = 1
+        
     elif command == Key.enter:
         battleinf.clear()
         battleinf.goto(-50,-340)
