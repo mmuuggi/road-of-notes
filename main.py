@@ -1,14 +1,14 @@
 #################################################################
 #                      Trabalho 02 Equipe                       #
 #             1- Kelve Monteiro Cartaxo - 542485                #
-#             2- Guilherme Henrique Alves Pinto - 545304        #
+#             2-Guilherme Henrique Alves Pinto - 545304         #
 #             3- Daniel Anderson Gonçalves de Oliveira - 540835 #
-#             4- Cauã Moreira Guimarães - 540850                #
-#             5- Mateus de Oliveira Trjano - 540020             #
+#             4-Coloquem Seus Nomes                             #
+#             5-Coloquem Seus Nomes                             #
 #################################################################
 
 
-###########################
+#################################################################
 #lugar dos imports
 import turtle
 from random import randint
@@ -156,9 +156,10 @@ def press_on_op(key):
         selecop = 5
     return False
 
-#função que cria a cutscene inicial
 def cutscene():
     window.bgpic('c:/Git Things/road-of-notes/sprites/c1.gif')
+    winsound.PlaySound('songs/intro.wav', winsound.SND_ASYNC)
+    cutext.goto(-480,-300)
     cutext.write(
         'A musica rege nossa sociedade, nossas vidas, nosso mundo...\n'
         'era isso que a mamãe sempre me dizia, mas o porque?\n'
@@ -169,50 +170,55 @@ def cutscene():
         'Da onde vem o poder da musica? eu preciso saber, nem que pra isso\n'
         'eu tenha que fugir daqui...'
         ,
-        font=("Minecraft", 16, "normal"))
-    time.sleep(15.0)
+        font=("Arial",14, "normal"))
+    time.sleep(16.0)
     cutext.clear()
     window.bgpic('c:/Git Things/road-of-notes/sprites/c2.gif')
+    cutext.goto(-480,-270)
     cutext.write(
-        'Não vou poder levar meu violino para não levantar suspeitas\n'
-        'Ainda bem que descobri uma loja clandestina na periferia, é melhor eu\n'
-        'comprar algum instrumento para me protejer durante a jornada.\n'
-        'Duvido que aqui vai ter algum violino, mas preciso de um instrumento de corda\n'
+        'Não vou poder levar minha flauta para não levantar suspeitas\n'
+        'Ainda bem que descobri uma loja clandestina na periferia, é melhor\n'
+        'eu comprar algum instrumento para me protejer durante a jornada.\n'
+        'Duvido que aqui vai ter alguma flauta, mas preciso de um \n'
+        'instrumento de sopro\n'
         ,
-        font=("Minecraft", 16, "normal"))
-    time.sleep(12.0)
+        font=("Arial",16, "normal"))
+    time.sleep(16.0)
     cutext.clear()
     window.bgpic('c:/Git Things/road-of-notes/sprites/c3.gif')
+    cutext.goto(-480,-280)
     cutext.write(
         'Entrando na loja vejo um velho polindo uma espada antiga com cuidado\n'
         'Chamei ele, que ao me ver pós um olhar de despreso em mim\n'
         '"O que um sangue nobre quer aqui? se vai me matar faça logo" - ele disse\n'
-        '"Só estou procurando por um instrumento novo, de preferencia de corda" - lhe disse\n'
+        '"Só estou procurando por um instrumento novo, de preferencia de sopro" - lhe disse\n'
         'Ele jogou a espada no chão e foi ate um armario e o abriu com agressividade\n'
         '"Só pega o que tu que e vai embora, a ultima coisa que eu quero são os\n'
         'os sangue nobres por perto" - disse e logo após voltou a polir a sua espada\n'
-        'Entre vários instrumentos que estavam la, apenas um era de corda, um simples\n'
-        'bandolim com formato estranho, mas era minha única opção. Resolvi sair de lar\n'
+        'Entre vários instrumentos que estavam la, apenas um era de corda, uma simples\n'
+        'flauta com formato estranho, mas era minha única opção. Resolvi sair de lar\n'
         'e deixar o velho em paz...'
         ,
-        font=("Minecraft", 16, "normal"))
-    time.sleep(20.0)
+        font=("Arial",13, "normal"))
+    time.sleep(21.0)
     cutext.clear()
     window.bgpic('c:/Git Things/road-of-notes/sprites/c4.gif')
+    cutext.goto(-480,-335)
     cutext.write(
-        'Sai de dentro dos muros da cidade, preciso descobrir a origem da musica\n'
-        'para enterder porque o mundo é como é...\n'
+        'Sai de dentro dos muros da cidade, preciso descobrir a origem da\n'
+        'musica para enterder porque o mundo é como é...\n'
         'Escuto uma voz familiar e autoritaria vindo de perto\n'
         '"Aonde pensa que vai Yonlero?" - meu irmão descobriu, mas como?\n'
-        '"Damer, eu preciso descobrir a origem da musica e você não vai me impedi!"\n'
-        '"você não vai a lugar algum e você sabe disso" - diz após dar uma gargalhada'
+        '"Damer, eu preciso descobrir a origem da musica e você\n'
+        ' não vai me impedir!"\n'
+        '"você não vai a lugar algum e sabe muito bem disso"\n'
+        'diz Dammer após dar uma gargalhada\n'
         ,
-        font=("Minecraft", 16, "normal"))
-    time.sleep(12.0)
+        font=("Arial",16, "normal"))
+    time.sleep(16.0)
     cutext.clear()
     battle(player,enemy)
 
-#função que cria a tela inicial
 def title():
     with Listener(on_press=press_on) as listener:
         listener.join()
@@ -235,48 +241,49 @@ def takedmg(attacker,defender,attack):
     loser = defender['name']
     if defender['stats']['life'] <=0:
         battleinf.clear()
-        battleinf.write(f'{loser} foi derrotado!!!', font=("Minecraft", 16, "normal"))
+        battleinf.write(f'{loser} foi derrotado!!!', font=("Arial",16, "normal"))
         time.sleep(1.5)
     else:
         battleinf.clear()
         battleinf.goto(130,-270)
-        battleinf.write(f'{loser} tomou {dmg} de dano!!!', font=("Minecraft", 16, "normal"))
+        battleinf.write(f'{loser} tomou {dmg} de dano!!!', font=("Arial",16, "normal"))
         time.sleep(1.5)
 
 def commands(player,enemy):
     battleinf.clear()
+    winsound.PlaySound('songs/battle.wav', winsound.SND_ASYNC)
     battleinf.goto(130,-320)
-    battleinf.write('Oque Voce Deseja Fazer!?\n----------------------------------\n[Space] Para Atacar\n[CapsLK]Para Bolsa\n[Enter]Para Fugir', font=("Minecraft", 16, "normal"))
+    battleinf.write('Oque Voce Deseja Fazer!?\n----------------------------------\n[Space] Para Atacar\n[CapsLK]Para Bolsa\n[Enter]Para Fugir', font=("Arial",16, "normal"))
     with Listener(on_press=press_on) as listener:
         listener.join()
     
     if command == Key.space:
         global selecatk
         battleinf.clear()
-        battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F1]Flauta Envolvente\n[F2]Here Comes The Sun\n[F3]Drum Mix\n', font=("Minecraft", 16, "normal"))
+        battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F1]Envolvente\n[F2]Unravel\n[F3]Alans Flute\n', font=("Arial",16, "normal"))
         with Listener(on_press=press_on_atk) as listener:
             listener.join()
         if selecatk == 1:
             battleinf.clear()
             battleinf.goto(35,-270)
-            battleinf.write('É a flauta envolvente que mexe com a mente', font=("Minecraft", 16, "normal"))
+            battleinf.write('É a flauta envolvente que mexe com a mente', font=("Arial",16, "normal"))
             winsound.PlaySound('songs/flautae.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         elif selecatk == 2:
             battleinf.clear()
             battleinf.goto(50,-270)
-            battleinf.write("Here comes the Sun And I say It's all right", font=("Minecraft", 16, "normal"))
-            winsound.PlaySound('songs/bandolin.wav', winsound.SND_ASYNC)
+            battleinf.write("Oh, can you tell me, can you tell me...", font=("Arial",16, "normal"))
+            winsound.PlaySound('songs/tokyo.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         elif selecatk == 3:
             battleinf.clear()
             battleinf.goto(170,-270)
-            battleinf.write('Feel the magic...', font=("Minecraft", 16, "normal"))
-            winsound.PlaySound('songs/tambor.wav', winsound.SND_ASYNC)
+            battleinf.write('Alan...', font=("Arial",16, "normal"))
+            winsound.PlaySound('songs/seiler.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         else:
             battleinf.clear()
-            battleinf.write('COMANDO INVALIDO, SELECIONANDO ATAQUE ALEATORIO!!!', font=("Minecraft", 16, "normal"))
+            battleinf.write('COMANDO INVALIDO, SELECIONANDO ATAQUE ALEATORIO!!!', font=("Arial",16, "normal"))
             battleinf.clear()
             time.sleep(1.5)
 
@@ -297,7 +304,7 @@ def commands(player,enemy):
         if afinador> 0:
             battleinf.clear()
             battleinf.goto(60,-320)
-            battleinf.write(f'Você tem {afinador} afinadores em sua Bolsa!!!\n[F4]Utilizar\n[F5]Não utilizar\n', font=("Minecraft", 16, "normal"))
+            battleinf.write(f'Você tem {afinador} afinadores em sua Bolsa!!!\n[F4]Utilizar\n[F5]Não utilizar\n', font=("Arial",16, "normal"))
             with Listener(on_press=press_on_op) as listener:
                 listener.join()
 
@@ -306,28 +313,28 @@ def commands(player,enemy):
                 afinador= afinador - 1
                 battleinf.clear()
                 battleinf.goto(130,-340)
-                battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F7]Flauta Envolvente\n[F8]Here Comes The Sun\n[F9]Drum Mix\n', font=("Minecraft", 16, "normal"))
+                battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F7]Envolvente\n[F8]Unravel\n[F9]Alans Flute\n', font=("Arial",16, "normal"))
                 with Listener(on_press=press_on_atk) as listener:
                     listener.join()
 
                 if selecatk == 7:
                     battleinf.clear()
                     battleinf.goto(35,-270)
-                    battleinf.write('É a flauta envolvente que mexe com a mente', font=("Minecraft", 16, "normal"))
+                    battleinf.write('É a flauta envolvente que mexe com a mente', font=("Arial",16, "normal"))
                     winsound.PlaySound('songs/flautae.wav', winsound.SND_ASYNC)
                     time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
                 elif selecatk == 8:
                     battleinf.clear()
                     battleinf.goto(50,-270)
-                    battleinf.write("Here comes the Sun And I say It's all right", font=("Minecraft", 16, "normal"))
+                    battleinf.write("Oh, can you tell me, can you tell me...", font=("Arial",16, "normal"))
                     winsound.PlaySound('songs/bandolin.wav', winsound.SND_ASYNC)
                     time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
                 elif selecatk == 9:
                     battleinf.clear()
                     battleinf.goto(170,-270)
-                    battleinf.write('Feel the magic...', font=("Minecraft", 16, "normal"))
+                    battleinf.write('Alan...', font=("Arial",16, "normal"))
                     winsound.PlaySound('songs/tambor.wav', winsound.SND_ASYNC)
                     time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
@@ -344,19 +351,19 @@ def commands(player,enemy):
                 
         else:
             battleinf.clear()
-            battleinf.write(f'SUA BOLSA ESTÁ VAZIA!!!\n', font=("Minecraft", 16, "normal"))
+            battleinf.write(f'SUA BOLSA ESTÁ VAZIA!!!\n', font=("Arial",16, "normal"))
             time.sleep(1.5)
             selecatk = 1
         
     elif command == Key.enter:
         battleinf.clear()
         battleinf.goto(60,-270)
-        battleinf.write('UM MÚSICO SEMPRE TERMINA SUA MELODIA!!!', font=("Minecraft", 12, "normal"))
+        battleinf.write('UM MÚSICO SEMPRE TERMINA SUA MELODIA!!!', font=("Arial",12, "normal"))
         time.sleep(1.5)
     else:
         battleinf.clear()
         battleinf.goto(150,-340)
-        battleinf.write('COMANDO INVALIDO!!!', font=("Minecraft", 16, "normal"))
+        battleinf.write('COMANDO INVALIDO!!!', font=("Arial",16, "normal"))
         time.sleep(1.5)
 
 def battle(player,enemy):
@@ -370,14 +377,14 @@ def battle(player,enemy):
     while True:
         battleinf.clear()
         battleinf.goto(40,-270)
-        battleinf.write('SUA RODADA... OQUE DESEJA FAZER???', font=("Minecraft", 16, "normal"))
+        battleinf.write('SUA RODADA... OQUE DESEJA FAZER???', font=("Arial",16, "normal"))
         time.sleep(1.5)
         battleinf.clear()
         if enemy['stats']['life'] >= 0 and player['stats']['life'] >= 0:
             commands(player,enemy)
         else:
             battleinf.clear()
-            battleinf.write('Batalha Encerrada', font=("Minecraft", 16, "normal"))
+            battleinf.write('Batalha Encerrada', font=("Arial",16, "normal"))
             time.sleep(1.5)
             quit()
 #################################################################################
