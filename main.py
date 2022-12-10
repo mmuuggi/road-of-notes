@@ -7,6 +7,7 @@
 #             5-Coloquem Seus Nomes                             #
 #################################################################
 
+
 ###########################
 #lugar dos imports
 import turtle
@@ -15,11 +16,6 @@ from pynput.keyboard import *
 import time
 import os
 ###########################
-
-
-
-
-
 
 
 #################################################################################
@@ -48,7 +44,7 @@ playermodel.goto(500,500)
 playermodel.shape('turtle')
 playermodel.shapesize(4)
 playermodel.color('Black')
-
+playermodel.hideturtle()
 
 enemy = {'name': 'Damper',
             'level': 30,
@@ -66,14 +62,23 @@ enemymodel.goto(500,500)
 enemymodel.shape('turtle')
 enemymodel.shapesize(2.5)
 enemymodel.color('Black')
-
+enemymodel.hideturtle()
 
 window = turtle.Screen()
 window.title('Road Of Notes')
 window.setup(1360,768)
 window.register_shape('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
-window.bgpic('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/c1.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/c2.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/c3.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/c4.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/p1.gif')
+window.register_shape('c:/Git Things/road-of-notes/sprites/p2.gif')
+window.register_shape('C:/Git Things/road-of-notes/sprites/title_screen.gif')
+
+window.bgpic('c:/Git Things/road-of-notes/sprites/title_screen.gif')
 #################################################################################
+
 
 #################################################################################
 #TEXTOS
@@ -84,7 +89,15 @@ battleinf.color = 'Black'
 battleinf.penup()
 battleinf.speed(0)
 battleinf.goto(500,500)
+
+cutext = turtle.Turtle()
+cutext.hideturtle()
+cutext.color("white")
+cutext.penup()
+cutext.speed(0)
+cutext.goto(-500,-300)
 #################################################################################]
+
 
 #################################################################################
 #VARIAVEL RESPONSAVEL PELA QTD DOS AFINADORES
@@ -92,12 +105,22 @@ battleinf.goto(500,500)
 afinador = 3
 #################################################################################
 
+
 #################################################################################
 #FUNCOES DA BATALHA//// TOMAR E RECEBER DANO, E OS COMANDOS
 #################################################################################
 def press_on(key):
     global command
     command = key
+    return False
+
+#opções no menu inicial
+def press_on_title(key):
+    global selectitle
+    if key == Key.up:
+        selectitle = 1
+    elif key == Key.down:
+        selectitle = 2
     return False
 
 def press_on_atk(key):
@@ -130,6 +153,77 @@ def press_on_op(key):
     else:
         selecop = 5
     return False
+
+def cutscene():
+    window.bgpic('c:/Git Things/road-of-notes/sprites/c1.gif')
+    cutext.write(
+        'A musica rege nossa sociedade, nossas vidas, nosso mundo...\n'
+        'era isso que a mamãe sempre me dizia, mas o porque?\n'
+        'Por que devemos viver melhor do que os outros, acima dos outros?\n'
+        'Por que vivemos em castelos no alto da cidade enquanto tem gente\n'
+        'passando fome abaixo dos nossos olhos?\n'
+        'Por que só nós somos permiditos de usar a magia da musica?\n'
+        'Da onde vem o poder da musica? eu preciso saber, nem que pra isso\n'
+        'eu tenha que fugir daqui...'
+        ,
+        font=("Minecraft", 16, "normal"))
+    time.sleep(15.0)
+    cutext.clear()
+    window.bgpic('c:/Git Things/road-of-notes/sprites/c2.gif')
+    cutext.write(
+        'Não vou poder levar meu violino para não levantar suspeitas\n'
+        'Ainda bem que descobri uma loja clandestina na periferia, é melhor eu\n'
+        'comprar algum instrumento para me protejer durante a jornada.\n'
+        'Duvido que aqui vai ter algum violino, mas preciso de um instrumento de corda\n'
+        ,
+        font=("Minecraft", 16, "normal"))
+    time.sleep(12.0)
+    cutext.clear()
+    window.bgpic('c:/Git Things/road-of-notes/sprites/c3.gif')
+    cutext.write(
+        'Entrando na loja vejo um velho polindo uma espada antiga com cuidado\n'
+        'Chamei ele, que ao me ver pós um olhar de despreso em mim\n'
+        '"O que um sangue nobre quer aqui? se vai me matar faça logo" - ele disse\n'
+        '"Só estou procurando por um instrumento novo, de preferencia de corda" - lhe disse\n'
+        'Ele jogou a espada no chão e foi ate um armario e o abriu com agressividade\n'
+        '"Só pega o que tu que e vai embora, a ultima coisa que eu quero são os\n'
+        'os sangue nobres por perto" - disse e logo após voltou a polir a sua espada\n'
+        'Entre vários instrumentos que estavam la, apenas um era de corda, um simples\n'
+        'bandolim com formato estranho, mas era minha única opção. Resolvi sair de lar\n'
+        'e deixar o velho em paz...'
+        ,
+        font=("Minecraft", 16, "normal"))
+    time.sleep(20.0)
+    cutext.clear()
+    window.bgpic('c:/Git Things/road-of-notes/sprites/c4.gif')
+    cutext.write(
+        'Sai de dentro dos muros da cidade, preciso descobrir a origem da musica\n'
+        'para enterder porque o mundo é como é...\n'
+        'Escuto uma voz familiar e autoritaria vindo de perto\n'
+        '"Aonde pensa que vai Yonlero?" - meu irmão descobriu, mas como?\n'
+        '"Damer, eu preciso descobrir a origem da musica e você não vai me impedi!"\n'
+        '"você não vai a lugar algum e você sabe disso" - diz após dar uma gargalhada'
+        ,
+        font=("Minecraft", 16, "normal"))
+    time.sleep(12.0)
+    cutext.clear()
+    battle(player,enemy)
+
+def title():
+    with Listener(on_press=press_on) as listener:
+        listener.join()
+        if command == Key.up:
+            cutscene()
+        elif command == Key.down:
+            quit()
+    while (command != Key.up or command != Key.down):
+        with Listener(on_press=press_on) as listener:
+            listener.join()
+
+        if command == Key.up:
+            cutscene()
+        elif command == Key.down:
+            quit()
 
 def takedmg(attacker,defender,attack):
     dmg = randint(attacker['stats'][f'dmg{attack}'][0],attacker['stats'][f'dmg{attack}'][1]) - defender['stats']['armor']
@@ -245,8 +339,13 @@ def commands(player,enemy):
         battleinf.write('COMANDO INVALIDO!!!', font=("Minecraft", 16, "normal"))
         time.sleep(1.5)
 def battle(player,enemy):
-    playermodel.goto(-400,-280)
-    enemymodel.goto(300,-40)
+    window.bgpic('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
+    playermodel.goto(-400,-180)
+    playermodel.shape('c:/Git Things/road-of-notes/sprites/p1.gif')
+    playermodel.showturtle()
+    enemymodel.goto(300,100)
+    enemymodel.showturtle()
+    enemymodel.shape('c:/Git Things/road-of-notes/sprites/p2.gif')
     while True:
         battleinf.clear()
         battleinf.goto(15,-300)
@@ -263,10 +362,10 @@ def battle(player,enemy):
 #################################################################################
 
 
-
 #################################################################################
 #CORPO PRINCIPAL DO GAME
 #################################################################################
 
-battle(player,enemy)
+
+title()
 window.mainloop()
