@@ -156,6 +156,7 @@ def press_on_op(key):
         selecop = 5
     return False
 
+#função que cria a cutscene inicial
 def cutscene():
     window.bgpic('c:/Git Things/road-of-notes/sprites/c1.gif')
     cutext.write(
@@ -211,6 +212,7 @@ def cutscene():
     cutext.clear()
     battle(player,enemy)
 
+#função que cria a tela inicial
 def title():
     with Listener(on_press=press_on) as listener:
         listener.join()
