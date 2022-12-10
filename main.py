@@ -1,9 +1,9 @@
 #################################################################
 #                      Trabalho 02 Equipe                       #
 #             1- Kelve Monteiro Cartaxo - 542485                #
-#             2- Mateus de Oliveira Trajano - 540020            #
+#             2-Guilherme Henrique Alves Pinto - 545304         #
 #             3- Daniel Anderson Gonçalves de Oliveira - 540835 #
-#             4- Cauã Moreira Guimarães - 540850                #
+#             4-Coloquem Seus Nomes                             #
 #             5-Coloquem Seus Nomes                             #
 #################################################################
 
@@ -15,6 +15,7 @@ from random import randint
 from pynput.keyboard import *
 import time
 import os
+import winsound
 ###########################
 
 
@@ -40,11 +41,12 @@ player  = {'name': 'Yonlero',
 playermodel = turtle.Turtle()
 playermodel.penup()
 playermodel.speed(0)
-playermodel.goto(500,500)
+playermodel.goto(500,600)
 playermodel.shape('turtle')
 playermodel.shapesize(4)
 playermodel.color('Black')
 playermodel.hideturtle()
+
 
 enemy = {'name': 'Damper',
             'level': 30,
@@ -58,7 +60,7 @@ enemy = {'name': 'Damper',
 enemymodel = turtle.Turtle()
 enemymodel.penup()
 enemymodel.speed(0)
-enemymodel.goto(500,500)
+enemymodel.goto(500,600)
 enemymodel.shape('turtle')
 enemymodel.shapesize(2.5)
 enemymodel.color('Black')
@@ -235,12 +237,13 @@ def takedmg(attacker,defender,attack):
         time.sleep(1.5)
     else:
         battleinf.clear()
+        battleinf.goto(130,-270)
         battleinf.write(f'{loser} tomou {dmg} de dano!!!', font=("Minecraft", 16, "normal"))
         time.sleep(1.5)
 
 def commands(player,enemy):
     battleinf.clear()
-    battleinf.goto(150,-340)
+    battleinf.goto(130,-320)
     battleinf.write('Oque Voce Deseja Fazer!?\n----------------------------------\n[Space] Para Atacar\n[CapsLK]Para Bolsa\n[Enter]Para Fugir', font=("Minecraft", 16, "normal"))
     with Listener(on_press=press_on) as listener:
         listener.join()
@@ -248,20 +251,26 @@ def commands(player,enemy):
     if command == Key.space:
         global selecatk
         battleinf.clear()
-        battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F1]Bohemian Rhapsody\n[F2]Dream On\n[F3]Juliet\n', font=("Minecraft", 16, "normal"))
+        battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F1]Flauta Envolvente\n[F2]Here Comes The Sun\n[F3]Drum Mix\n', font=("Minecraft", 16, "normal"))
         with Listener(on_press=press_on_atk) as listener:
             listener.join()
         if selecatk == 1:
             battleinf.clear()
-            battleinf.write('Mama, Just Killed A Man', font=("Minecraft", 16, "normal"))
+            battleinf.goto(35,-270)
+            battleinf.write('É a flauta envolvente que mexe com a mente', font=("Minecraft", 16, "normal"))
+            winsound.PlaySound('songs/flautae.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         elif selecatk == 2:
             battleinf.clear()
-            battleinf.write('The Past Is Gone', font=("Minecraft", 16, "normal"))
+            battleinf.goto(50,-270)
+            battleinf.write("Here comes the Sun And I say It's all right", font=("Minecraft", 16, "normal"))
+            winsound.PlaySound('songs/bandolin.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         elif selecatk == 3:
             battleinf.clear()
-            battleinf.write('I am Choosen Undead', font=("Minecraft", 16, "normal"))
+            battleinf.goto(170,-270)
+            battleinf.write('Feel the magic...', font=("Minecraft", 16, "normal"))
+            winsound.PlaySound('songs/tambor.wav', winsound.SND_ASYNC)
             time.sleep(1.5)
         else:
             battleinf.clear()
@@ -274,6 +283,7 @@ def commands(player,enemy):
         if enemy['stats']['life'] <= 20:
             enemy['stats']['dmg1'] = [999,999]
             selecatk = 1
+            winsound.PlaySound('songs/harpa.wav', winsound.SND_ASYNC)
             takedmg(enemy,player,selecatk)
         else:
             selecatk = 1
@@ -284,6 +294,7 @@ def commands(player,enemy):
 
         if afinador> 0:
             battleinf.clear()
+            battleinf.goto(60,-320)
             battleinf.write(f'Você tem {afinador} afinadores em sua Bolsa!!!\n[F4]Utilizar\n[F5]Não utilizar\n', font=("Minecraft", 16, "normal"))
             with Listener(on_press=press_on_op) as listener:
                 listener.join()
@@ -292,24 +303,31 @@ def commands(player,enemy):
                 
                 afinador= afinador - 1
                 battleinf.clear()
-                battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F7]Bohemian Rhapsody\n[F8]Dream On\n[F9]Juliet\n', font=("Minecraft", 16, "normal"))
+                battleinf.goto(130,-340)
+                battleinf.write('Selecione Sua Melodia!!!\n-----------------------------\n[F7]Flauta Envolvente\n[F8]Here Comes The Sun\n[F9]Drum Mix\n', font=("Minecraft", 16, "normal"))
                 with Listener(on_press=press_on_atk) as listener:
                     listener.join()
 
                 if selecatk == 7:
                     battleinf.clear()
-                    battleinf.write('Mama, Just Killed A Man', font=("Minecraft", 16, "normal"))
-                    time.sleep(1)
+                    battleinf.goto(35,-270)
+                    battleinf.write('É a flauta envolvente que mexe com a mente', font=("Minecraft", 16, "normal"))
+                    winsound.PlaySound('songs/flautae.wav', winsound.SND_ASYNC)
+                    time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
                 elif selecatk == 8:
                     battleinf.clear()
-                    battleinf.write('The Past Is Gone', font=("Minecraft", 16, "normal"))
-                    time.sleep(1)
+                    battleinf.goto(50,-270)
+                    battleinf.write("Here comes the Sun And I say It's all right", font=("Minecraft", 16, "normal"))
+                    winsound.PlaySound('songs/bandolin.wav', winsound.SND_ASYNC)
+                    time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
                 elif selecatk == 9:
                     battleinf.clear()
-                    battleinf.write('I am Choosen Undead', font=("Minecraft", 16, "normal"))
-                    time.sleep(1)
+                    battleinf.goto(170,-270)
+                    battleinf.write('Feel the magic...', font=("Minecraft", 16, "normal"))
+                    winsound.PlaySound('songs/tambor.wav', winsound.SND_ASYNC)
+                    time.sleep(1.5)
                     takedmg(player,enemy,selecatk)
                 else:
                     battleinf.clear()
@@ -330,14 +348,15 @@ def commands(player,enemy):
         
     elif command == Key.enter:
         battleinf.clear()
-        battleinf.goto(-50,-340)
-        battleinf.write('UM MÚSICO SEMPRE TERMINA SUA MELODIA!!!', font=("Minecraft", 16, "normal"))
+        battleinf.goto(60,-270)
+        battleinf.write('UM MÚSICO SEMPRE TERMINA SUA MELODIA!!!', font=("Minecraft", 12, "normal"))
         time.sleep(1.5)
     else:
         battleinf.clear()
         battleinf.goto(150,-340)
         battleinf.write('COMANDO INVALIDO!!!', font=("Minecraft", 16, "normal"))
         time.sleep(1.5)
+
 def battle(player,enemy):
     window.bgpic('c:/Git Things/road-of-notes/sprites/fotofoda.gif')
     playermodel.goto(-400,-180)
@@ -348,7 +367,7 @@ def battle(player,enemy):
     enemymodel.shape('c:/Git Things/road-of-notes/sprites/p2.gif')
     while True:
         battleinf.clear()
-        battleinf.goto(15,-300)
+        battleinf.goto(40,-270)
         battleinf.write('SUA RODADA... OQUE DESEJA FAZER???', font=("Minecraft", 16, "normal"))
         time.sleep(1.5)
         battleinf.clear()
@@ -367,5 +386,7 @@ def battle(player,enemy):
 #################################################################################
 
 
+#################################################################################
+#battle(player,enemy)
 title()
 window.mainloop()
