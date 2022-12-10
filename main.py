@@ -1,10 +1,10 @@
 #################################################################
 #                      Trabalho 02 Equipe                       #
 #             1- Kelve Monteiro Cartaxo - 542485                #
-#             2-Guilherme Henrique Alves Pinto - 545304         #
+#             2- Guilherme Henrique Alves Pinto - 545304        #
 #             3- Daniel Anderson Gonçalves de Oliveira - 540835 #
-#             4-Coloquem Seus Nomes                             #
-#             5-Coloquem Seus Nomes                             #
+#             4- Cauã Moreira Guimarães - 540850                #
+#             5- Mateus de Oliveira Trjano - 540020             #
 #################################################################
 
 
