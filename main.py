@@ -1,9 +1,9 @@
 #################################################################
 #                      Trabalho 02 Equipe                       #
 #             1- Kelve Monteiro Cartaxo - 542485                #
-#             2-Coloquem Seus Nomes                             #
+#             2- Mateus de Oliveira Trajano - 540020            #
 #             3- Daniel Anderson Gonçalves de Oliveira - 540835 #
-#             4-Coloquem Seus Nomes                             #
+#             4- Cauã Moreira Guimarães - 540850                #
 #             5-Coloquem Seus Nomes                             #
 #################################################################
 
