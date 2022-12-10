@@ -5,6 +5,7 @@ nossa responsabilidade.
 
 requisitos minimos para jogar:
 instalar a extenção (pynput) no python - codigo de instalação no terminal => pip install pynput
+o arquivo deve estar na pasta (C:) para funcionar
 
 
 obrigado por jogar :)
